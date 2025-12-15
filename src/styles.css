@@ -1,50 +1,363 @@
-body {
-  font-family: Arial, sans-serif;
-  background: #f4f7fb;
+/* Modern Reset */
+* {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Main Container */
 .container {
-  max-width: 600px;
-  margin: 50px auto;
-  padding: 25px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  padding: 40px;
+  width: 100%;
+  max-width: 1200px;
+  min-height: 80vh;
+  position: relative;
+  overflow: hidden;
 }
 
-h2 {
-  color: #333;
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  border-radius: 50%;
+  transform: translate(150px, -150px);
+  opacity: 0.1;
+  z-index: 0;
 }
 
-button {
-  background-color: #4c82ff;
+/* Header Section */
+.container h2:first-of-type {
+  color: #2d3748;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+
+/* User Email in Welcome */
+.container h2:first-of-type::after {
+  content: attr(data-user);
+  color: #667eea;
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+/* Logout Button */
+.logout-btn {
+  background: linear-gradient(135deg, #f56565, #e53e3e);
   color: white;
   border: none;
-  padding: 10px 14px;
-  margin: 5px;
-  border-radius: 6px;
+  padding: 12px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
   cursor: pointer;
-  transition: 0.2s;
-}
-
-button:hover {
-  background-color: #3b6fe0;
-}
-
-.logout-btn {
-  background-color: #ff4c4c;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(245, 101, 101, 0.3);
+  position: relative;
+  z-index: 1;
 }
 
 .logout-btn:hover {
-  background-color: #d93b3b;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(245, 101, 101, 0.4);
 }
 
-input {
-  padding: 10px;
-  width: 70%;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  margin-right: 10px;
+/* Stock Subscription Section */
+.container h3:nth-of-type(1) {
+  color: #4a5568;
+  font-size: 1.8rem;
+  margin: 40px 0 25px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Stock Buttons Grid */
+.container > button {
+  background: white;
+  border: 2px solid #e2e8f0;
+  color: #4a5568;
+  padding: 16px 24px;
+  margin: 8px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.container > button:hover {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+}
+
+.container > button:active {
+  transform: translateY(-1px);
+}
+
+/* Stock List Section */
+.container h2:nth-of-type(2) {
+  color: #2d3748;
+  font-size: 2rem;
+  margin: 50px 0 30px;
+  padding-top: 30px;
+  border-top: 2px solid #e2e8f0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Individual Stock Card */
+.subscribed > div {
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.subscribed > div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  border-color: #cbd5e0;
+}
+
+/* Stock Name and Price */
+.subscribed h3 {
+  color: #2d3748;
+  font-size: 1.6rem;
+  margin-bottom: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subscribed h3 span {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 50px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(72, 187, 120, 0.3);
+}
+
+/* Graph Container */
+.subscribed > div > div:last-child {
+  background: #f7fafc;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #e2e8f0;
+  margin-top: 20px;
+}
+
+/* Loading State */
+.loading-text {
+  color: #718096;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 60px 0;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+/* Modern Popup */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.popup-box {
+  background: linear-gradient(135deg, white, #f8fafc);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+  animation: slideUp 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.popup-box h3 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  margin-bottom: 25px;
+  font-weight: 600;
+}
+
+.popup-box button {
+  margin: 10px;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.popup-box button:first-child {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.popup-box button:first-child:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.5);
+}
+
+.popup-box button.logout-btn {
+  background: #edf2f7;
+  color: #718096;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.popup-box button.logout-btn:hover {
+  background: #e2e8f0;
+  color: #4a5568;
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  .container {
+    padding: 25px;
+  }
+  
+  .container h2:first-of-type {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 15px;
+  }
+  
+  .container > button {
+    width: calc(50% - 16px);
+    margin: 8px;
+    display: inline-block;
+  }
+  
+  .subscribed h3 {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container > button {
+    width: 100%;
+    margin: 8px 0;
+  }
+  
+  .popup-box {
+    padding: 30px 20px;
+  }
+}
+
+/* Stock price colors based on value */
+.subscribed h3 span {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+}
+
+.subscribed h3 span:contains("Waiting") {
+  background: #a0aec0;
+}
+
+/* Graph improvements */
+canvas {
+  width: 100% !important;
+  height: 200px !important;
+}
+
+/* Ensure proper z-index layering */
+.container > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #5a6fd8, #6b4099);
 }
