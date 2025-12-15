@@ -88,7 +88,7 @@ export default function App() {
       </button>
 
       <h3>Subscribe to a Stock</h3>
-      {["GOOG", "TSLA", "AMZN", "META", "NVDA"].map((s) => (
+      {["GOOGle", "TSLA", "AMZN", "META", "NVDA"].map((s) => (
         <button key={s} onClick={() => askSubscribe(s)}>
           {s}
         </button>
