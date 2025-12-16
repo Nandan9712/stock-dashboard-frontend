@@ -3,6 +3,35 @@ import "./styles.css";
 
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const handleLogin = () => {
+    if (!email) {
+      setError("Email is required");
+      return;
+    }
+    
+    if (!validateEmail(email)) {
+      setError("Please enter a valid email address");
+      return;
+    }
+    
+    setError("");
+    onLogin(email);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    // Clear error when user starts typing
+    if (error) {
+      setError("");
+    }
+  };
 
   return (
     <div className="login-page">
@@ -12,9 +41,10 @@ export default function Login({ onLogin }) {
           type="email"
           placeholder="Enter your email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleEmailChange}
         />
-        <button onClick={() => onLogin(email)}>Login</button>
+        {error && <div className="error-message">{error}</div>}
+        <button onClick={handleLogin}>Login</button>
       </div>
     </div>
   );

@@ -76,7 +76,14 @@ body, html {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
 }
-
+.error-message {
+  color: #ff4444;
+  font-size: 14px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  text-align: left;
+  width: 100%;
+}
 /* Responsive */
 @media (max-width: 480px) {
   .login-card {
